@@ -1,4 +1,4 @@
-# Stockdale Reality
+# Reality
 
 > Retain faith that you will prevail in the end, regardless of the difficulties, and at the same time, **you must confront the brutal facts of your current reality, whatever they might be**.
 > -- Stockdale Paradox
