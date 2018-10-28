@@ -1,5 +1,4 @@
 import importlib
-import sys
 import aiohttp
 import asyncio
 

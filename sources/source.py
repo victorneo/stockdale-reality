@@ -1,6 +1,3 @@
-import aiohttp
-
-
 class Source(object):
     """Source is a data source capable of fetching and rendering data.
 
