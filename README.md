@@ -22,4 +22,6 @@ You might be writing custom scripts for each of them today and tracking them in
 various ways; this project aims to be a "scripting" interface that allows you to
 centralize the scripting and have them all report to you in one single place.
 
+## Requirements
 
+Python 3.7+ is required as asyncio received a significant performance boost in 3.7+.
