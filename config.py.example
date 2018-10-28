@@ -1,0 +1,12 @@
+# Config File Example
+
+
+# Uses the built-in HttpCodeSource and configuration to pass to the source
+# This example sets up two HttpCodeSources with two different configuration:
+# One to fetch the status code for python.org and one for google.com.
+SOURCES = [
+    {'name': 'httpcodesource.HttpCodeSource',
+     'config': {'url': 'http://python.org'}},
+    {'name': 'httpcodesource.HttpCodeSource',
+     'config': {'url': 'http://google.com'}},
+]
