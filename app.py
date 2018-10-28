@@ -1,3 +1,4 @@
+import sys
 import importlib
 import aiohttp
 import asyncio
@@ -10,20 +11,24 @@ def import_source(s_name):
     return getattr(source_module, class_name)
 
 
-async def main(sources, configs):
-    source_classes = []
-    for s_name in sources:
-        source_classes.append(import_source(s_name))
-
+async def main(sources):
     async with aiohttp.ClientSession() as session:
-        for idx, s in enumerate(source_classes):
-            si = s(session, **configs[idx])
-            await si.fetch()
-            await si.render()
+        for source in sources:
+            source_class = import_source(source['name'])
+            source_instance = source_class(session, **source['config'])
+            await source_instance.fetch()
+            await source_instance.render()
 
 
 if __name__ == '__main__':
-    sources = ['httpcodesource.HttpCodeSource',
-               'httpcodesource.HttpCodeSource']
-    configs = [{'url': 'http://python.org'}, {'url': 'http://google.com'}]
-    asyncio.run(main(sources, configs))
+    try:
+        from config import SOURCES
+    except ImportError:
+        print('Configuration file config.py is missing.')
+        print('Copy from config.py.example to use as a base config file.')
+        sys.exit(1)
+    except SyntaxError:
+        print('Syntax error in config.py')
+        sys.exit(1)
+
+    asyncio.run(main(SOURCES))
